@@ -10,7 +10,8 @@
  **/
 
 const fizzbuzz = () => {
-  // Loop through 1 to 100 and print values as requested by the homework
+  // Loop through 1 to 100 and print values accordingly,
+  // as instructed by the homework assignment.
   for (let i = 1; i <= 100; i++) {
     if (i % 3 === 0 && i % 5 === 0) {
       console.log('fizzbuzz');
