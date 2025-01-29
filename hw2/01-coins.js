@@ -30,7 +30,6 @@ function calculateChange(amount) {
     }
   }
 
-
   // Filtering out coins with value 0 and formatting the output
   const formattedOutput = Object.entries(result)
     .filter(([_, quantity]) => quantity > 0)
