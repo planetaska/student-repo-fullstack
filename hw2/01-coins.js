@@ -3,34 +3,41 @@
 // Add your function here 
 function calculateChange(amount) {
   // Exit early if the amount is out of bound
-  if (amount <= 0) return `$${amount} ==> Error: must be a positive amount`;
-  if (amount > 100) return `$${amount} ==> Error: the number is too large`;
+  if (amount <= 0) return `$${amount} ==> Error: amount must be greater than $0.00`;
+  if (amount > 100) return `$${amount} ==> Error: amount must be less than or equal to $100.00`;
 
-  // Declare coins and their values
+  // Convert amount to cents for easier calculation
+  const cents = Math.round(amount * 100);
+
+  // Define coin values in cents
   const coins = {
-    dollar: 1,
-    quarter: 0.25,
-    dime: 0.1,
-    nickel: 0.05,
-    penny: 0.01
+    dollar: 100,
+    quarter: 25,
+    dime: 10,
+    nickel: 5,
+    penny: 1
   };
 
   const result = {};
-
-  let remainingAmount = amount;
+  let remainingCents = cents;
 
   // Iterate through each coin type to calculate the quantity needed
   for (const [coin, value] of Object.entries(coins)) {
-    result[coin] = Math.floor(remainingAmount / value);
-    // Avoid floating-point precision issues
-    remainingAmount = (remainingAmount % value).toFixed(2);
+    if (remainingCents >= value) {
+      const numCoins = Math.floor(remainingCents / value);
+      remainingCents = remainingCents % value;
+      result[coin] = numCoins;
+    }
   }
 
 
   // Filtering out coins with value 0 and formatting the output
   const formattedOutput = Object.entries(result)
     .filter(([_, quantity]) => quantity > 0)
-    .map(([coin, quantity]) => `${quantity} ${coin}${quantity > 1 ? 's' : ''}`)
+    .map(([coin, quantity]) => {
+      const coinName = coin === 'penny' && quantity > 1 ? 'pennies' : `${coin}${quantity > 1 ? 's' : ''}`;
+      return `${quantity} ${coinName}`;
+    })
     .join(', ');
 
   return `$${amount} ==> ${formattedOutput}`;
