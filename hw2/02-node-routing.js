@@ -12,9 +12,23 @@ const port = process.env.PORT || 5001;
 // For other routes, such as http://localhost:5001/other, this exercise should return a status code 404 with '404 - page not found' in html format
 
 const routes = {
+  '/': (req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    res.write('<h1>Node Routing Exercise 🚏</h1>');
+    res.write('<ul>');
+    res.write('<li><a href="/welcome">Welcome</a></li>');
+    res.write('<li><a href="/redirect">Redirect</a></li>');
+    res.write('<li><a href="/cache">Cache</a></li>');
+    res.write('<li><a href="/cookie">Cookie</a></li>');
+    res.write('<li><a href="/other">404 Test</a></li>');
+    res.write('</ul>');
+    res.end();
+  },
+
   '/welcome': (req, res) => {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    res.write('<h1>Welcome to the wonderland! 🐰</h1>');
+    res.write('<h1>♠️♥️♣️♦️Welcome to the wonderland! 🐰⏰💐️🌳🌳</h1>');
+    res.write('<a href="/">👈Back</a>');
     res.end();
   },
 
@@ -26,6 +40,7 @@ const routes = {
   '/redirected': (req, res) => {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
     res.write('<h1>🐇🌀🌀🌀You have been successfully redirected!</h1>');
+    res.write('<a href="/">👈Back</a>');
     res.end();
   },
 
@@ -35,6 +50,7 @@ const routes = {
       'Cache-Control': 'max-age=86400', // 1 day in seconds
     });
     res.write('<h1>🏴‍☠️This resource was cached.</h1>');
+    res.write('<a href="/">👈Back</a>');
     res.end();
   },
 
@@ -52,6 +68,7 @@ const routes = {
 const notFoundHandler = (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
   res.write('<h1>404 - Page Not Found🙈</h1>');
+  res.write('<a href="/">👈Back</a>');
   res.end();
 };
 
