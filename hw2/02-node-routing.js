@@ -66,7 +66,7 @@ const routes = {
 
 // Default handler for 404 responses
 const notFoundHandler = (req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+  res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'});
   res.write('<h1>404 - Page Not Found🙈</h1>');
   res.write('<a href="/">👈Back</a>');
   res.end();
