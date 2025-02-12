@@ -2,8 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const axios = require('axios').default;
-const _ = require('lodash');
+// Using axios for fetch requests
+const axios = require('axios').default
+// Using lodash for easier data manipulation
+const _ = require('lodash')
 
 // Set Pug as default templating engine
 app.set('view engine', 'pug')
@@ -12,7 +14,7 @@ app.set('view engine', 'pug')
 app.use(express.static('public'))
 
 app.get(['/', '/home'], (req, res) => {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
+  res.render('index', { title: 'Countries and Capitals' })
 })
 
 app.get('/capitals', (req, res) => {
@@ -49,7 +51,7 @@ app.get('/populous', (req, res) => {
           flag: country.flag
         }))
         .orderBy(['population'], ['desc'])
-        .value();
+        .value()
 
       // Pass the processed data to the view
       res.render('populous', {
@@ -74,7 +76,7 @@ app.get('/regions', (req, res) => {
           name: region,
           countries: countries.length
         }))
-        .value();
+        .value()
 
       // Pass the processed data to the view
       res.render('regions', {
@@ -88,6 +90,11 @@ app.get('/regions', (req, res) => {
     })
 })
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render('404', { title: 'Page Not Found' })
+})
+
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`🙉 Templating exercise app listening on port ${port}`)
 })
