@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    div(class="card lg:card-side glass")
+        .card-body.text-left
+            h2.card-title All #{capitals.length} countries on earth and their capitals!
+            div.overflow-y-auto(class="max-h-[240px] sm:max-h-[430px]")
+                each item in capitals
+                    p #{item.flag} #{item.name} - #{item.capital}

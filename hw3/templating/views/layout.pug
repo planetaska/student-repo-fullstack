@@ -1,0 +1,17 @@
+html
+    head
+        meta(charset="utf-8")
+        title= title
+        link(href="./styles/main.css", rel="stylesheet")
+    body
+        .hero.min-h-screen.place-items-start(style="background-image: url(images/bg.webp);")
+            .hero-overlay.bg-opacity-60
+            .hero-content.text-neutral-content.text-center.mx-auto
+                .max-w-lg
+                    h1.mb-5.text-5xl.font-bold Countries and Capitals
+                    .flex.justify-between.mb-5
+                        a(class="btn btn-primary btn-sm sm:btn-md", href="/home") Home
+                        a(class="btn btn-primary btn-sm sm:btn-md", href="/capitals") Capitals
+                        a(class="btn btn-primary btn-sm sm:btn-md", href="/populous") Populous
+                        a(class="btn btn-primary btn-sm sm:btn-md", href="/regions") Regions
+                    block content

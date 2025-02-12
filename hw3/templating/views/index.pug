@@ -1,9 +1,9 @@
-html
-    head
-        meta(charset="utf-8")
-        title= title
-        link(href="./styles/main.css", rel="stylesheet")
-    body
-        h1= message
-        div Test
-        button(class="btn btn-primary") Test
+extends layout
+
+block content
+    div(class="card lg:card-side glass")
+        figure(class="min-w-1/2")
+            img.h-full(src="images/hero.jpeg" alt="Larm Rmah")
+        .card-body.text-left
+            h2.card-title Welcome!
+            p.mb-5 This web app provides information on world capitals, the most populous countries, and countries by region.
