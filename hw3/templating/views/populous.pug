@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    div(class="card lg:card-side glass")
+        .card-body.text-left
+            h2.card-title #{populous.length} countries with >50mil population on earth!
+            ol.list-decimal.pl-6.leading-relaxed
+                each item in populous
+                    li #{item.flag} #{item.name} - #{item.population}
+            .card-actions.justify-end
+                a.btn.btn-primary(href="#top") Back to top
